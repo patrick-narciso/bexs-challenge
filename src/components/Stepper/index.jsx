@@ -5,7 +5,7 @@ import useWindowSize from 'hooks/useWindowSize';
 
 import {CheckIcon, Chevron, Container, Wrapper, Text, Title, Icon} from './styles';
 
-const Stepper = ({children}) => {
+const Stepper = ({children, className}) => {
 	const size = useWindowSize();
 	const isMobile = size.width <= 1024;
 	const childrenLength = React.Children.count(children);
@@ -16,7 +16,7 @@ const Stepper = ({children}) => {
 
 	if (isMobile) {
 		return (
-			<Container>
+			<Container className={className}>
 				<Text bold>
 					Etapa {indexStepActive} <Text>de {childrenLength}</Text>
 				</Text>
@@ -25,7 +25,7 @@ const Stepper = ({children}) => {
 	}
 
 	return (
-		<Container>
+		<Container className={className}>
 			{React.Children.map(children, (child, index) => {
 				if (index + 1 === childrenLength && React.isValidElement(child)) {
 					return React.cloneElement(child, {isLastItem: true, index: index + 1});
@@ -65,7 +65,7 @@ Step.defaultProps = {
 
 Step.propTypes = {
 	index: PropTypes.number,
-	title: PropTypes.string.isRequired,
+	title: PropTypes.string,
 	isLastItem: PropTypes.bool,
 	finished: PropTypes.bool,
 	active: PropTypes.bool,

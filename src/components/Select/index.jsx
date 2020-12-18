@@ -24,7 +24,6 @@ const Select = ({id, label, onChange, onBlur, onFocus, error, options}) => {
 	}
 
 	function handleChange(e) {
-		debugger;
 		activateField();
 		onChange(e);
 	}
@@ -68,6 +67,7 @@ Select.defaultProps = {
 	onFocus: () => {},
 	onChange: () => {},
 	error: '',
+	options: [],
 };
 
 Select.propTypes = {

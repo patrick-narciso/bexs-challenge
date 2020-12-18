@@ -25,13 +25,14 @@ Button.defaultProps = {
 	variant: 'primary',
 	disabled: false,
 	loading: false,
+	onClick: () => {},
 };
 
 Button.propTypes = {
 	variant: PropTypes.oneOf(['primary', 'secondary']),
 	children: PropTypes.string.isRequired,
 	disabled: PropTypes.bool,
-	onClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 	loading: PropTypes.bool,
 };
 

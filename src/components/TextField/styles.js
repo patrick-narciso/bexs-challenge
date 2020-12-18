@@ -50,6 +50,7 @@ export const Disclaimer = styled.div`
 	margin-top: 5px;
 	color: ${({theme}) => theme.colors.primary.warning};
 	font-family: ${({theme}) => theme.fonts.family};
+	font-size: ${({theme}) => theme.fonts.sizes.small};
 `;
 
 export const Wrapper = styled.div`
@@ -57,6 +58,5 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-	margin-bottom: ${({theme, $error}) =>
-		$error ? '20px' : theme.measures.verticalDistance};
+	margin-bottom: ${({theme}) => theme.measures.verticalDistance};
 `;

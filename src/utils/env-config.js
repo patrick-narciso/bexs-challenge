@@ -4,7 +4,7 @@ const envs = {
 		timeout: 2000,
 	},
 	production: {
-		baseUrl: 'http://localhost:3000',
+		baseUrl: 'https://my-json-server.typicode.com/patrick-narciso/bexs-backend',
 		timeout: 3000,
 	},
 };

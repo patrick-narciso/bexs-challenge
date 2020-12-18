@@ -44,7 +44,7 @@ const CustomButton = styled(Button)`
 	}
 `;
 
-const Form = ({handleFocus, formik}) => {
+const Form = ({handleFocus, handleSubmit, formik, loading}) => {
 	const installments = [
 		{text: '1x de R$ 12.000,00 sem juros', value: '1'},
 		{text: '2x de R$ 6.000,00 sem juros', value: '2'},
@@ -53,7 +53,7 @@ const Form = ({handleFocus, formik}) => {
 	];
 
 	return (
-		<PaymentForm onSubmit={formik.handleSubmit}>
+		<PaymentForm>
 			<TextField
 				id="cardNumber"
 				label="Número do cartão"
@@ -110,7 +110,13 @@ const Form = ({handleFocus, formik}) => {
 				onFocus={handleFocus}
 			/>
 			<ButtonContainer>
-				<CustomButton disabled={!formik.isValid}>Continuar</CustomButton>
+				<CustomButton
+					onClick={handleSubmit}
+					loading={loading}
+					disabled={!formik.isValid || loading}
+				>
+					Continuar
+				</CustomButton>
 			</ButtonContainer>
 		</PaymentForm>
 	);
@@ -118,11 +124,15 @@ const Form = ({handleFocus, formik}) => {
 
 Form.defaultProps = {
 	handleFocus: () => {},
+	handleSubmit: () => {},
+	loading: false,
 };
 
 Form.propTypes = {
 	handleFocus: PropTypes.func,
+	handleSubmit: PropTypes.func,
 	formik: PropTypes.object.isRequired,
+	loading: PropTypes.bool,
 };
 
 export default Form;

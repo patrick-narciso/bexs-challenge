@@ -4,9 +4,10 @@ import {useFormik} from 'formik';
 
 import useWindowSize from 'hooks/useWindowSize';
 import {Stepper, Step} from 'components';
+import {PaymentService} from 'services/Payment';
 
 import PaymentForm from './components/PaymentForm';
-import {formikConfig} from './formik-config';
+import {formikConfig, normalizeTransactionPayload} from './formik-config';
 import {
 	Header,
 	Navbar,
@@ -23,12 +24,27 @@ import {
 
 const Checkout = () => {
 	const [inputFocused, setInputFocused] = useState('');
+	const [loading, setLoading] = useState(false);
 	const formik = useFormik(formikConfig);
 	const screen = useWindowSize();
 	const isMobile = screen.width <= 1024;
 
 	function handleFocus(e) {
 		setInputFocused(e.target.name);
+	}
+
+	async function handleSubmit() {
+		try {
+			setLoading(true);
+			const payload = normalizeTransactionPayload({...formik.values});
+			await PaymentService.create(payload);
+			formik.resetForm();
+			window.alert('Obrigado pela compra!');
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setLoading(false);
+		}
 	}
 
 	if (isMobile) {
@@ -55,7 +71,12 @@ const Checkout = () => {
 							number={formik.values.cardNumber}
 						/>
 					</CreditCard>
-					<PaymentForm formik={formik} handleFocus={handleFocus} />
+					<PaymentForm
+						formik={formik}
+						loading={loading}
+						handleSubmit={handleSubmit}
+						handleFocus={handleFocus}
+					/>
 				</Container>
 			</>
 		);
@@ -85,7 +106,12 @@ const Checkout = () => {
 					<Step title="Pagamento" active />
 					<Step title="Confirmação" />
 				</Stepper>
-				<PaymentForm formik={formik} handleFocus={handleFocus} />
+				<PaymentForm
+					formik={formik}
+					loading={loading}
+					handleSubmit={handleSubmit}
+					handleFocus={handleFocus}
+				/>
 			</FormContainer>
 		</DeskContainer>
 	);

@@ -1,0 +1,51 @@
+{
+	"pagar": [
+		{
+			"id": 1,
+			"credit_card_holder_name": "JOAO S SAURO",
+			"credit_card_number": "4111111111111111",
+			"credit_card_expiration_date": "0121",
+			"credit_card_cvv": "123",
+			"amount": 10000,
+			"installments": 1
+		},
+		{
+			"credit_card_holder_name": "Patrick",
+			"credit_card_number": "5334898883034285",
+			"credit_card_expiration_date": "0722",
+			"credit_card_cvv": "772",
+			"created_at": 1608317347712,
+			"id": 2
+		},
+		{
+			"credit_card_holder_name": "Patrick",
+			"credit_card_number": "5334898883034285",
+			"credit_card_expiration_date": "1222",
+			"credit_card_cvv": "124",
+			"amount": 1000,
+			"installments": "1",
+			"created_at": 1608317663822,
+			"id": 3
+		},
+		{
+			"credit_card_holder_name": "patrick",
+			"credit_card_number": "5334898883034285",
+			"credit_card_expiration_date": "1222",
+			"credit_card_cvv": "123",
+			"amount": 1000,
+			"installments": "2",
+			"created_at": 1608317733004,
+			"id": 4
+		},
+		{
+			"credit_card_holder_name": "Patrick",
+			"credit_card_number": "5334898883034285",
+			"credit_card_expiration_date": "1222",
+			"credit_card_cvv": "123",
+			"amount": 1000,
+			"installments": "2",
+			"created_at": 1608317779569,
+			"id": 5
+		}
+	]
+}

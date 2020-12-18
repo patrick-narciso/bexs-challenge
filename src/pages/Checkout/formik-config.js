@@ -37,3 +37,19 @@ export const formikConfig = {
 	validationSchema: NewTransactionSchema,
 	validateOnMount: true,
 };
+
+export const normalizeTransactionPayload = ({
+	cardHolder,
+	cardNumber,
+	expireDate,
+	cvc,
+	installments,
+}) => ({
+	credit_card_holder_name: cardHolder,
+	credit_card_number: cardNumber.replace(/\s/g, ''),
+	credit_card_expiration_date: expireDate.replace('/', ''),
+	credit_card_cvv: cvc,
+	amount: 1000,
+	installments,
+	created_at: Date.now(),
+});

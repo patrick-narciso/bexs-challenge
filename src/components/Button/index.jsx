@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import {Container, LoadingIcon, CustomButton} from './styles';
 
-const Button = ({variant, children, onClick, disabled, loading}) => {
+const Button = ({variant, children, onClick, disabled, loading, className}) => {
 	const renderChildren = () => {
 		if (loading) {
 			return (
@@ -15,7 +15,13 @@ const Button = ({variant, children, onClick, disabled, loading}) => {
 		return children;
 	};
 	return (
-		<CustomButton type="button" variant={variant} onClick={onClick} disabled={disabled}>
+		<CustomButton
+			className={className}
+			type="button"
+			variant={variant}
+			onClick={onClick}
+			disabled={disabled}
+		>
 			{renderChildren()}
 		</CustomButton>
 	);

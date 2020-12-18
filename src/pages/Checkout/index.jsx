@@ -3,11 +3,23 @@ import Cards from 'react-credit-cards';
 import {useFormik} from 'formik';
 
 import useWindowSize from 'hooks/useWindowSize';
-import {Step} from 'components';
+import {Stepper, Step} from 'components';
 
 import PaymentForm from './components/PaymentForm';
 import {formikConfig} from './formik-config';
-import {Header, Navbar, CustomStepper, Payment, Container, CreditCard} from './styles';
+import {
+	Header,
+	Navbar,
+	CustomStepper,
+	Payment,
+	Container,
+	CreditCard,
+	SideBar,
+	DeskContainer,
+	FormContainer,
+	DeskCardContainer,
+	NavDisclaimer,
+} from './styles';
 
 const Checkout = () => {
 	const [inputFocused, setInputFocused] = useState('');
@@ -49,7 +61,34 @@ const Checkout = () => {
 		);
 	}
 
-	return <div>Hello World!</div>;
+	return (
+		<DeskContainer>
+			<SideBar>
+				<Navbar>
+					<i className="fa fa-chevron-left"></i>
+					<NavDisclaimer>Alterar forma de pagamento</NavDisclaimer>
+				</Navbar>
+				<Payment />
+				<DeskCardContainer>
+					<Cards
+						cvc={formik.values.cvc}
+						expiry={formik.values.expireDate || '00/00'}
+						focused={inputFocused}
+						name={formik.values.cardHolder || 'Nome do titular'}
+						number={formik.values.cardNumber}
+					/>
+				</DeskCardContainer>
+			</SideBar>
+			<FormContainer>
+				<Stepper>
+					<Step title="Carrinho" finished />
+					<Step title="Pagamento" active />
+					<Step title="Confirmação" />
+				</Stepper>
+				<PaymentForm formik={formik} handleFocus={handleFocus} />
+			</FormContainer>
+		</DeskContainer>
+	);
 };
 
 export default Checkout;

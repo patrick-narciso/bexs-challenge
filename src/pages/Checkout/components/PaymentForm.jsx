@@ -6,6 +6,12 @@ import {TextField, Select, Button} from 'components';
 export const PaymentForm = styled.form`
 	margin-top: 90px;
 	padding: 40px;
+	width: 100%;
+	@media (min-width: 1024px) {
+		margin-top: 0;
+		margin-left: 130px;
+		padding-right: 120px;
+	}
 `;
 
 export const CardRow = styled.div`
@@ -23,6 +29,19 @@ const CvvCol = styled.div`
 const ExpirationCol = styled(CvvCol)`
 	flex: 2;
 	margin-right: 8px;
+`;
+
+const ButtonContainer = styled.div`
+	@media (min-width: 1024px) {
+		display: flex;
+		justify-content: flex-end;
+	}
+`;
+
+const CustomButton = styled(Button)`
+	@media (min-width: 1024px) {
+		max-width: 246px;
+	}
 `;
 
 const Form = ({handleFocus, formik}) => {
@@ -90,7 +109,9 @@ const Form = ({handleFocus, formik}) => {
 				error={formik.touched.installments && formik.errors.installments}
 				onFocus={handleFocus}
 			/>
-			<Button disabled={!formik.isValid}>Continuar</Button>
+			<ButtonContainer>
+				<CustomButton disabled={!formik.isValid}>Continuar</CustomButton>
+			</ButtonContainer>
 		</PaymentForm>
 	);
 };

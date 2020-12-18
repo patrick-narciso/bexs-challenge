@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import {ThemeProvider} from 'styled-components';
 
 import theme, {GlobalStyle} from 'commons/styled-components/theme';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'react-credit-cards/es/styles-compiled.css';
 
 ReactDOM.render(
 	<React.StrictMode>
